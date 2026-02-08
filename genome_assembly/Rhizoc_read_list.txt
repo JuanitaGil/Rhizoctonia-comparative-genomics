@@ -1,0 +1,1 @@
+/path/to/[isolateID]_nanopore.fastq.gz
