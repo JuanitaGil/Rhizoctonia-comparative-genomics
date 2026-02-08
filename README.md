@@ -1,5 +1,5 @@
-# Rhizoctonia-comparative-genomics
-Genome assemblies and annotations of five Ceratobasidium sp. isolates and one Rhizoctonia zeae isolate to conduct comparative genomic studies.
+# Comparative genomics of Ceratobasidium species
+Genome assemblies and annotations of five Ceratobasidium sp. isolates to conduct comparative genomic studies.
 Data consists of Nanopore and Illumina reads
 
 # 1. Sequence quality check
@@ -19,3 +19,6 @@ kmerAnalysis.R
 #2.2 Assembly
 
 #2.3 Polishing
+
+# 3. Effectors and CAZymes prediction
+# 4. Secondary metabolites
