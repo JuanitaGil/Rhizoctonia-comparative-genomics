@@ -1,0 +1,25 @@
+#Running transdecoder
+path/to/TransDecoder-TransDecoder-v5.5.0/TransDecoder.LongOrfs -t [isolateID]_NGSEP_cds.fa >& [isolateID]_transdecoder.log
+
+conda activate trinotate
+
+#Running blast
+blastx -query [isolateID]_NGSEP_cds.fa -db path/to/uniprot_sprot.pep -num_threads 8 -max_target_seqs 1 -outfmt 6 -evalue 1e-3 > [isolateID]_blastx.outfmt6 &
+
+blastp -query [isolateID]_NGSEP_cds.fa.transdecoder_dir/longest_orfs.pep -db path/to/uniprot_sprot.pep -num_threads 8 -max_target_seqs 1 -outfmt 6 -evalue 1e-3 > [isolateID]_blastp.outfmt6 &
+
+#Running hmmer
+path/to/hmmscan --cpu 8 --domtblout [isolateID]_trinotatePFAM.out path/to/Pfam-A.hmm [isolateID]_NGSEP_cds.fa.transdecoder_dir/longest_orfs.pep > [isolateID]_pfam.log &
+
+#Running signalp v5.0
+path/to/signalp -format "short" -prefix [isolateID]_signalp -fasta path/to/[isolateID]_NGSEP_cds.fa.transdecoder_dir/longest_orfs.pep >& [isolateID]_transdecoderPep_signalp.log &
+
+path/to/signalp -fasta [isolateID]_NGSEP_polished2.all.maker.proteins.putative_function.fasta -format long -gff3 -mature -plot png -prefix [isolateID]_signalp > [isolateID]_signalp.log &
+
+#Running tmhmm
+path/to/tmhmm-2.0c/bin/tmhmm --short < [isolateID]_NGSEP_cds.fa.transdecoder_dir/longest_orfs.pep > [isolateID]_tmhmm.out &
+
+path/to/tmhmm-2.0c/bin/tmhmm --short < [isolateID]_NGSEP_polished2.all.maker.proteins.putative_function_mature.fasta > [isolateID]_tmhmm.out
+
+#Running targetp
+path/to/targetp/bin/targetp -fasta [isolateID]_NGSEP_polished2.all.maker.proteins.putative_function_mature.fasta -org non-pl -prefix [isolateID]_signalp_targetp > [isolateID]_targetp.log
