@@ -5,11 +5,11 @@ Data consists of Nanopore and Illumina reads
 # 1. Sequence quality check
 Scripts to calculate sequencing stats for Illumina and Nanopore reads
 
-1.1 Illumina reads
-runFastQC.sh
+1.1 Illumina reads \n
+runFastQC.sh \n
 MultiQC
 
-1.2 Nanopore reads
+1.2 Nanopore reads \n
 runNanoplot.sh
 
 1.3 k-mer analysis for genome size estimation
